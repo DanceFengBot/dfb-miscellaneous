@@ -3,7 +3,7 @@ name: Monthly Patch Cover
 on:
   schedule:
     - cron: "0 4 15 * *" # Runs at 4:00 AM on the 15th of every month
-    workflow_dispatch:
+  workflow_dispatch:
 
 jobs:
   run-task:
