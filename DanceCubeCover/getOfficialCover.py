@@ -15,13 +15,12 @@ music_data = []
 # Initialize a set to track unique MusicIDs
 unique_music_ids = set()
 
-# Output file path: always write to the same directory as this script,
-# so it is saved under the repository instead of the current working directory.
+# Use the repository-relative location to ensure the output is saved inside the repo tree.
 script_dir = os.path.dirname(os.path.abspath(__file__))
-output_file = os.path.join(script_dir, 'CoverData')
-
-# Ensure the parent directory exists before writing
-os.makedirs(os.path.dirname(output_file), exist_ok=True)
+repo_root = os.path.abspath(os.path.join(script_dir, os.pardir))
+output_dir = os.path.join(repo_root, 'DanceCubeCover')
+os.makedirs(output_dir, exist_ok=True)
+output_file = os.path.join(output_dir, 'CoverData.json')
 
 # Check if the output file already exists
 if os.path.exists(output_file):
@@ -41,7 +40,6 @@ response = requests.request("GET", url, headers=headers, data=payload)
 
 try:
     response.raise_for_status()
-    # Parse JSON response directly from the URL
     data = response.json()
 
     # Extract MusicID and Cover
