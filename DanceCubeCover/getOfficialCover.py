@@ -16,7 +16,7 @@ music_data = []
 unique_music_ids = set()
 
 # Output file path
-output_file = './CoverData'
+output_file = 'DanceCubeCover/CoverData'
 
 # Check if the output file already exists
 if os.path.exists(output_file):
