@@ -15,8 +15,13 @@ music_data = []
 # Initialize a set to track unique MusicIDs
 unique_music_ids = set()
 
-# Output file path
-output_file = 'DanceCubeCover/CoverData'
+# Output file path: always write to the same directory as this script,
+# so it is saved under the repository instead of the current working directory.
+script_dir = os.path.dirname(os.path.abspath(__file__))
+output_file = os.path.join(script_dir, 'CoverData')
+
+# Ensure the parent directory exists before writing
+os.makedirs(os.path.dirname(output_file), exist_ok=True)
 
 # Check if the output file already exists
 if os.path.exists(output_file):
@@ -29,12 +34,13 @@ else:
     existing_data = []
 
 # Merge existing data with new data, avoiding duplicates
-existing_ids = {item["MusicID"] for item in existing_data}
+existing_ids = {item["MusicID"] for item in existing_data if isinstance(item, dict) and "MusicID" in item}
 
-url = f"https://dancedemo.shenghuayule.com/Dance/api/User/GetMusicRankingNew?musicIndex=1&keyword=&page=1&pagesize=15"
+url = "https://dancedemo.shenghuayule.com/Dance/api/User/GetMusicRankingNew?musicIndex=1&keyword=&page=1&pagesize=15"
 response = requests.request("GET", url, headers=headers, data=payload)
 
 try:
+    response.raise_for_status()
     # Parse JSON response directly from the URL
     data = response.json()
 
@@ -53,8 +59,8 @@ try:
             unique_music_ids.add(music_id)
 
             print(f"[{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}] ✓ Stored: MusicID={music_id}, CoverURL={cover_url}")
-except json.JSONDecodeError:
-    print(f"[{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}] Failed to decode JSON response.")
+except (json.JSONDecodeError, requests.RequestException) as exc:
+    print(f"[{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}] Failed to decode JSON response or request failed: {exc}")
 
 # Combine existing data with new data
 music_data.extend(existing_data)
