@@ -1,7 +1,6 @@
 import requests
 import os
 import json
-import subprocess
 from datetime import datetime
 import time
 
@@ -21,53 +20,8 @@ script_dir = os.path.dirname(os.path.abspath(__file__))
 repo_root = os.path.abspath(os.path.join(script_dir, os.pardir))
 output_dir = os.path.join(repo_root, 'DanceCubeCover')
 os.makedirs(output_dir, exist_ok=True)
-output_file = os.path.join(output_dir, 'CoverData')
-
-
-def try_git_commit_and_push():
-    """Attempt to commit and push the generated JSON file if running inside a git repo."""
-    try:
-        git_check = subprocess.run(
-            ['git', '-C', repo_root, 'rev-parse', '--is-inside-work-tree'],
-            capture_output=True,
-            text=True,
-            check=True,
-        )
-        if git_check.stdout.strip() != 'true':
-            print(f"[{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}] Git repo check failed, skip commit.")
-            return
-
-        subprocess.run(['git', '-C', repo_root, 'add', 'DanceCubeCover/CoverData.json'], check=True)
-
-        status = subprocess.run(
-            ['git', '-C', repo_root, 'diff', '--cached', '--quiet', '--', 'DanceCubeCover/CoverData.json'],
-            capture_output=True,
-            text=True,
-            check=False,
-        )
-        if status.returncode == 0:
-            print(f"[{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}] No file changes to commit.")
-            return
-
-        subprocess.run(
-            ['git', '-C', repo_root, 'config', 'user.name', 'GitHub Action'],
-            check=False,
-        )
-        subprocess.run(
-            ['git', '-C', repo_root, 'config', 'user.email', 'action@github.com'],
-            check=False,
-        )
-        subprocess.run(
-            ['git', '-C', repo_root, 'commit', '-m', 'Update cover data'],
-            check=False,
-        )
-        subprocess.run(
-            ['git', '-C', repo_root, 'push'],
-            check=False,
-        )
-        print(f"[{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}] Commit/push step completed or skipped intentionally.")
-    except Exception as exc:
-        print(f"[{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}] Git commit/push skipped: {exc}")
+# Use a stable filename with .json extension
+output_file = os.path.join(output_dir, 'CoverData.json')
 
 
 # Check if the output file already exists
@@ -120,8 +74,8 @@ with open(output_file, 'w', encoding='utf-8') as f:
 
 print(f"Data updated and saved to {output_file}")
 
-# Attempt to automatically commit and push if this is a git repo and credentials are available.
-try_git_commit_and_push()
+# NOTE: git commit/push is intentionally removed from this script.
+# Perform commits and pushes from the CI workflow (GitHub Actions) to avoid credential issues.
 
 # Record the end time
 end_time = time.time()
