@@ -21,7 +21,7 @@ script_dir = os.path.dirname(os.path.abspath(__file__))
 repo_root = os.path.abspath(os.path.join(script_dir, os.pardir))
 output_dir = os.path.join(repo_root, 'DanceCubeCover')
 os.makedirs(output_dir, exist_ok=True)
-output_file = os.path.join(output_dir, 'CoverData.json')
+output_file = os.path.join(output_dir, 'CoverData')
 
 
 def try_git_commit_and_push():
