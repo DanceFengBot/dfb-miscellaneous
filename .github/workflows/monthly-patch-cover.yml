@@ -26,11 +26,14 @@ jobs:
       - name: Run script
         run: python DanceCubeCover/getOfficialCover.py
 
-      - name: Commit and Push
-  # You may pin to the exact commit or the version.
-  # uses: flex-development/gh-commit@177be4b5bca1b102400ca7220932d9ff7980fddb
-        uses: flex-development/gh-commit@1.0.0
-        with:
-          files: DanceCubeCover/CoverData
-          message: Cover Update
-
+      - name: Commit and Push Changes
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          COMMIT_MESSAGE: "Update Monthly Patch Cover"
+        run: |
+          gh auth login --with-token <<< "${GITHUB_TOKEN}"
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add DanceCubeCover/CoverData
+          git commit -m "${COMMIT_MESSAGE}" || echo "No changes to commit"  
+          
