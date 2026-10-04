@@ -37,7 +37,7 @@ else:
 # Merge existing data with new data, avoiding duplicates
 existing_ids = {item["MusicID"] for item in existing_data if isinstance(item, dict) and "MusicID" in item}
 
-url = "https://dancedemo.shenghuayule.com/Dance/api/Goods/GetGoodsMusic?page="+str(i)+"&pagesize=1000&orderby=1&ordertype=1"
+url = "https://dancedemo.shenghuayule.com/Dance/api/Goods/GetGoodsMusic?page=1&pagesize=1000&orderby=1&ordertype=2"
 response = requests.request("GET", url, headers=headers, data=payload)
 
 try:
