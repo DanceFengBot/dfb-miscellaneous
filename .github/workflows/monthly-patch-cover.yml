@@ -31,7 +31,6 @@ jobs:
   # uses: flex-development/gh-commit@177be4b5bca1b102400ca7220932d9ff7980fddb
         uses: flex-development/gh-commit@1.0.0
         with:
-          files: # optional
-    # Commit message
+          files: DanceCubeCover/CoverData
           message: Cover Update
 
