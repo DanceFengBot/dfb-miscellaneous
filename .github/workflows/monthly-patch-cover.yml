@@ -46,8 +46,8 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
           # 添加并提交实际文件（脚本已写入 DanceCubeCover/CoverData.json）
-          git add Official/CoverData.json
-          git add Custom/CoverData.json
+          git add DanceCubeCover/Official/CoverData.json
+          git add DanceCubeCover/Custom/CoverData.json
           
           # 如果没有变更，不要失败
           git commit -m "${COMMIT_MESSAGE}" || echo "No changes to commit"

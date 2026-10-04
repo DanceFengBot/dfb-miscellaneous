@@ -36,31 +36,31 @@ else:
 
 # Merge existing data with new data, avoiding duplicates
 existing_ids = {item["MusicID"] for item in existing_data if isinstance(item, dict) and "MusicID" in item}
-for i in range(1,11):
-    url = "https://dancedemo.shenghuayule.com/Dance/api/Goods/GetGoodsMusic?page="+str(i)+"&pagesize=1000&orderby=1&ordertype=1"
-    response = requests.request("GET", url, headers=headers, data=payload)
 
-    try:
-        response.raise_for_status()
-        data = response.json()
+url = "https://dancedemo.shenghuayule.com/Dance/api/Goods/GetGoodsMusic?page="+str(i)+"&pagesize=1000&orderby=1&ordertype=1"
+response = requests.request("GET", url, headers=headers, data=payload)
 
-        # Extract MusicID and Cover
-        for item in data.get("List", []):
-            music_id = item.get("MusicID")
-            cover_url = item.get("PicPath")
+try:
+    response.raise_for_status()
+    data = response.json()
 
-            if music_id and cover_url and music_id not in unique_music_ids and music_id not in existing_ids:
-                # Remove the "/200" suffix from the Cover URL
-                cover_url = cover_url.rsplit('/200', 1)[0]
-                cover_url = cover_url.rsplit('?x-oss-process=style/circle_512', 1)[0]
-                # Append the MusicID and Cover URL to the list
-                music_data.append({"MusicID": music_id, "PicPath": cover_url})
-                # Add the MusicID to the set
-                unique_music_ids.add(music_id)
+    # Extract MusicID and Cover
+    for item in data.get("List", []):
+        music_id = item.get("MusicID")
+        cover_url = item.get("PicPath")
 
-            print(f"[{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}] ✓ Stored: MusicID={music_id}, CoverURL={cover_url}")
-    except (json.JSONDecodeError, requests.RequestException) as exc:
-        print(f"[{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}] Failed to decode JSON response or request failed: {exc}")
+        if music_id and cover_url and music_id not in unique_music_ids and music_id not in existing_ids:
+            # Remove the "/200" suffix from the Cover URL
+            cover_url = cover_url.rsplit('/200', 1)[0]
+            cover_url = cover_url.rsplit('?x-oss-process=style/circle_512', 1)[0]
+            # Append the MusicID and Cover URL to the list
+            music_data.append({"MusicID": music_id, "PicPath": cover_url})
+            # Add the MusicID to the set
+            unique_music_ids.add(music_id)
+
+        print(f"[{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}] ✓ Stored: MusicID={music_id}, CoverURL={cover_url}")
+except (json.JSONDecodeError, requests.RequestException) as exc:
+    print(f"[{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}] Failed to decode JSON response or request failed: {exc}")
 
 # Combine existing data with new data
 music_data.extend(existing_data)
