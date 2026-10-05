@@ -1,4 +1,4 @@
-name: Monthly Patch Official Cover
+name: Daily Patch Custom Cover
 
 # 显式给 GITHUB_TOKEN 写入仓库内容的权限
 permissions:
