@@ -1,4 +1,4 @@
-name: Monthly Patch Cover
+name: Monthly Patch Official Cover
 
 # 显式给 GITHUB_TOKEN 写入仓库内容的权限
 permissions:
@@ -30,9 +30,6 @@ jobs:
           python -m pip install --upgrade pip
           pip install requests
 
-      - name: Run script 1
-        run: python DanceCubeCover/Custom/getCustomCover.py
-
       - name: Run script 2
         run: python DanceCubeCover/Official/getOfficialCover.py
 
@@ -40,14 +37,13 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           TIMESTAMP: ${{ github.event.schedule[0].cron }}
-          COMMIT_MESSAGE: "Updated Monthly Patch Cover at ${{ github.event.schedule[0].cron }}"
+          COMMIT_MESSAGE: "Updated Monthly Patch Official Cover at ${{ github.event.schedule[0].cron }}"
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
           # 添加并提交实际文件（脚本已写入 DanceCubeCover/CoverData.json）
           git add DanceCubeCover/Official/CoverData.json
-          git add DanceCubeCover/Custom/CoverData.json
           
           # 如果没有变更，不要失败
           git commit -m "${COMMIT_MESSAGE}" || echo "No changes to commit"

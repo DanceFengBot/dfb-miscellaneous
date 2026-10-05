@@ -1,0 +1,52 @@
+name: Monthly Patch Official Cover
+
+# 显式给 GITHUB_TOKEN 写入仓库内容的权限
+permissions:
+  contents: write
+
+on:
+  schedule:
+    - cron: "0 4 * * *"
+  workflow_dispatch:
+
+jobs:
+  run-task:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          # 保留凭据以便后续 git push 可以使用 GITHUB_TOKEN
+          persist-credentials: true
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.x"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests
+
+      - name: Run script
+        run: python DanceCubeCover/Custom/getCustomCover.py
+
+      - name: Commit and Push Changes
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TIMESTAMP: ${{ github.event.schedule[0].cron }}
+          COMMIT_MESSAGE: "Updated Daily Patch Custom Patch Cover at ${{ github.event.schedule[0].cron }}"
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          # 添加并提交实际文件（脚本已写入 DanceCubeCover/CoverData.json）
+          git add DanceCubeCover/Custom/CoverData.json
+          
+          # 如果没有变更，不要失败
+          git commit -m "${COMMIT_MESSAGE}" || echo "No changes to commit"
+
+          # 使用 checkout 保留的凭据推送
+          git push origin HEAD
