@@ -24238,5 +24238,13 @@
     {
         "MusicID": 23545,
         "PicPath": "https://dance-user-file.oss-cn-shanghai.aliyuncs.com/music/736505_1791530230898_1.jpg"
+    },
+    {
+        "MusicID": 23550,
+        "PicPath": "https://dance-user-file.oss-cn-shanghai.aliyuncs.com/music/4143577_1791637668931_1.jpg"
+    },
+    {
+        "MusicID": 23551,
+        "PicPath": "https://dance-user-file.oss-cn-shanghai.aliyuncs.com/music/606052_1791686176362_1.jpg"
     }
 ]
