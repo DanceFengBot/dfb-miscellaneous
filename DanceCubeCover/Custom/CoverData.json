@@ -24658,5 +24658,13 @@
     {
         "MusicID": 23748,
         "PicPath": "https://dance-user-file.oss-cn-shanghai.aliyuncs.com/music/5964149_1793791720184_1.jpg"
+    },
+    {
+        "MusicID": 23758,
+        "PicPath": "https://dance-user-file.oss-cn-shanghai.aliyuncs.com/music/3541090_1793934940500_1.jpg"
+    },
+    {
+        "MusicID": 23760,
+        "PicPath": "https://asset-music.oss-cn-shanghai.aliyuncs.com/dancecube/1_358_1635587237053_45_1.jpg"
     }
 ]
