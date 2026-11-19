@@ -24708,6 +24708,10 @@
         "PicPath": "https://dance-user-file.oss-cn-shanghai.aliyuncs.com/music/3541090_1794305039868_1.jpg"
     },
     {
+        "MusicID": 23771,
+        "PicPath": "https://dance-user-file.oss-cn-shanghai.aliyuncs.com/music/7755109_1794406838692_1.jpg"
+    },
+    {
         "MusicID": 23773,
         "PicPath": "https://dance-user-file.oss-cn-shanghai.aliyuncs.com/music/4124904_1794449068826_1.jpg"
     },
@@ -24746,5 +24750,9 @@
     {
         "MusicID": 23813,
         "PicPath": "https://dance-user-file.oss-cn-shanghai.aliyuncs.com/music/943526_1794985503695_1.jpg"
+    },
+    {
+        "MusicID": 23818,
+        "PicPath": "https://dance-user-file.oss-cn-shanghai.aliyuncs.com/music/7755109_1795014962491_1.jpg"
     }
 ]
