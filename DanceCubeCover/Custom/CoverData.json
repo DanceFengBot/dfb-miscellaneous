@@ -23496,6 +23496,10 @@
         "PicPath": "https://dance-user-file.oss-cn-shanghai.aliyuncs.com/music/2436514_1785824609251_1.jpg"
     },
     {
+        "MusicID": 23034,
+        "PicPath": "https://dance-user-file.oss-cn-shanghai.aliyuncs.com/music/4638224_1788244013222_1.jpg"
+    },
+    {
         "MusicID": 23036,
         "PicPath": "http://asset-music.oss-cn-shanghai.aliyuncs.com/dancecube/502_fuli auto shooter.jpg"
     },
@@ -24772,6 +24776,10 @@
         "PicPath": "https://dance-user-file.oss-cn-shanghai.aliyuncs.com/music/2525364_1795067549472_1.jpg"
     },
     {
+        "MusicID": 23821,
+        "PicPath": "https://dance-user-file.oss-cn-shanghai.aliyuncs.com/music/630096_1795067259_94564.jpg"
+    },
+    {
         "MusicID": 23824,
         "PicPath": "https://dance-user-file.oss-cn-shanghai.aliyuncs.com/music/2975362_1795093565_25365.jpg"
     },
@@ -24794,6 +24802,10 @@
     {
         "MusicID": 23845,
         "PicPath": "https://dance-user-file.oss-cn-shanghai.aliyuncs.com/music/606052_1795321063067_1.jpg"
+    },
+    {
+        "MusicID": 23847,
+        "PicPath": "https://dance-user-file.oss-cn-shanghai.aliyuncs.com/music/3541090_1795362398379_1.jpg"
     },
     {
         "MusicID": 23849,
@@ -24834,5 +24846,17 @@
     {
         "MusicID": 23882,
         "PicPath": "https://asset-music.oss-cn-shanghai.aliyuncs.com/dancecube/331972_1773499996242.jpg?x-oss-process=image/resize,w_200"
+    },
+    {
+        "MusicID": 23887,
+        "PicPath": "https://asset-music.oss-cn-shanghai.aliyuncs.com/dancecube/1_4900_1660808216913_4_1.jpg"
+    },
+    {
+        "MusicID": 23888,
+        "PicPath": "https://dance-user-file.oss-cn-shanghai.aliyuncs.com/music/6970358_1795711883782_1.jpg"
+    },
+    {
+        "MusicID": 23889,
+        "PicPath": "https://dance-user-file.oss-cn-shanghai.aliyuncs.com/music/461652_1795720402557_1.jpg"
     }
 ]
